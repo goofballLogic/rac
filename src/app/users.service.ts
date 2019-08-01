@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG, AppConfig } from './app-config.module';
 import { catchError, retry } from 'rxjs/operators';
 import { buildHttpErrorHandler } from './error-handling.module';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 const handleHttpError = buildHttpErrorHandler("An error occurred fetching users");
 

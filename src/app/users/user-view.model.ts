@@ -1,5 +1,5 @@
-import { Role } from "src/app/roles.service";
-import { User } from "src/app/users.service";
+import { User } from "../users.service";
+import { Role } from "../roles.service";
 
 export interface UserRoleView {
     name: string;
