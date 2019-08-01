@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  usersEndpoint: "https://custom.rotacloud.com/angular-challenge/users.json",
+  rolesEndpoint: "https://custom.rotacloud.com/angular-challenge/roles.json"
 };
 
 /*
