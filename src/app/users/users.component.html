@@ -5,9 +5,9 @@
 		<th>Name</th>
 		<th>Roles</th>
 	</thead>
-	<tr *ngFor="let user of users">
+	<tr *ngFor="let user of users | async">
 		<td>{{user.id}}</td>
-		<td><input type="text" value="{{user.name}}" /></td>
+		<td><input type="text" value="{{user.name}}" (change)="onChange($event,user.id)" /></td>
 		<td>
 			<div *ngFor="let role of user.roles" class="tag" [style.background-color]="[(role.colour)]">
 				{{role.name}}

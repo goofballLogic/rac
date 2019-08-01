@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
 import { UserView, usersToUserViews } from './user-view.model';
-import { forkJoin } from 'rxjs';
+import { combineLatest, Observable, BehaviorSubject, Subject } from 'rxjs';
 import { RolesService } from '../roles.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { RolesService } from '../roles.service';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  users: UserView[];
+  users: BehaviorSubject<UserView[]> = new BehaviorSubject<UserView[]>([]);
   error: any;
 
   constructor(private usersService: UsersService, private rolesService: RolesService) { }
@@ -19,12 +19,16 @@ export class UsersComponent implements OnInit {
     this.showUsersWithRoles();
   }
 
+  onChange(e: any, userId: number) {
+    this.usersService.updateUser(userId, u => ({ ...u, name: e.target.value }));
+  }
+
   showUsersWithRoles() {
 
     const observableUsers = this.usersService.getUsers();
     const observableRoles = this.rolesService.getRoles();
-    forkJoin([observableUsers, observableRoles]).subscribe(
-      (([users, roles]) => this.users = usersToUserViews(users, roles)),
+    combineLatest(observableUsers, observableRoles).subscribe(
+      (([users, roles]) => this.users.next(usersToUserViews(users, roles))),
       err => this.error = err
     );
 
