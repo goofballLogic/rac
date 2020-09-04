@@ -22,7 +22,7 @@
     "@angular/router": "^6.1.0",
     "core-js": "^2.5.4",
     "fsevents": "^2.0.7",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "rxjs": "^6.0.0",
     "service": "^0.1.4",
     "zone.js": "~0.8.26"
